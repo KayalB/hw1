@@ -1,4 +1,5 @@
-/*
+
+ /*
 CSCI 104: Homework 1 Problem 1
 
 Write a recursive function to split a sorted singly-linked
@@ -12,12 +13,39 @@ the function below should be the only one in this file.
 
 #include "split.h"
 
+
 /* Add a prototype for a helper function here if you need */
 
 void split(Node*& in, Node*& odds, Node*& evens)
 {
-  /* Add code here */
-// WRITE YOUR CODE HERE
+  if(in == nullptr){
+    return;
+  }
+  if (in->next != nullptr){
+    // cout << "Got here" << endl;
+    split(in->next, odds, evens);
+  }
+  // If its even
+  if(in->value % 2 == 0){
+    if(evens != nullptr){
+      in->next = evens;
+    } 
+    evens = in;
+    in = nullptr;
+  }
+
+  // If its odd
+  else{
+    if(odds != nullptr){
+      in->next = odds;
+    }
+
+    odds = in;
+    in = nullptr;
+  }  
 }
 
+
+
 /* If you needed a helper function, write it here */
+
